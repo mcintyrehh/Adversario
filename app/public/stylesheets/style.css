@@ -1,8 +1,24 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url(../images/robots.png);
+  max-width: 100vw;
+  color: whitesmoke;
 }
-
+.titletop {
+  font-size: 50px;
+  color: whitesmoke;
+}
+.text {
+  color: whitesmoke; 
+}
+#upload {
+  margin-left: 15px;
+}
+.question-number {
+  font-weight:bold;
+  font-size: 20pt;
+}
 a {
   color: #00B7FF;
 }
