@@ -1,9 +1,9 @@
-$(document).ready(function() {
-    
-    function question() {
+
+    console.log("**************************");
+    function question(id, string) {
         `<div class="survey-questions border">
-          <div class="question-number text-center">Question 1</div>
-          <div class="question text-center">Its fine to be a few minutes late if you're good friends</div>
+          <div class="question-number text-center">Question ${id}</div>
+          <div class="question text-center">${string}</div>
           <span>(strongly agree)</span>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" id="inlineRadio1" value="1">
@@ -29,7 +29,9 @@ $(document).ready(function() {
         </div>`
     }
 
+$("#submit").on("click", function() {
+    var answer = $('input[name=radioOptions]:checked').val();
+    event.preventDefault();
+    console.log(answer);
 
-
-
-});
+})
