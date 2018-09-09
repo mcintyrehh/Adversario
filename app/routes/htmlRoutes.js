@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-
+var enemiesList = require('../data/enemies')
 /* GET home page. */
 router.get('/:url?', function (req, res) {
     console.log(req.params.url);
@@ -18,5 +18,6 @@ router.get('/:url?', function (req, res) {
             return;
     }
 });
+
 
 module.exports = router;
