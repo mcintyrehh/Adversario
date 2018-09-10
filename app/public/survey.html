@@ -35,14 +35,14 @@
         <div class="form-row">
           <div class="col-md-4 my-auto form-group text-center">
             <label for="name">Name</label>
-            <input type="name" class="form-control" id="nameInput" placeholder="Firstname McLastname">
+            <input type="name" class="form-control my-auto" id="nameInput" placeholder="Firstname McLastname">
           </div>
           <div class="col-md-4 surveyImg">
             <img type="file" class="col-md-12 uploaded-img">
           </div>
           <div class="col-md-4 my-auto form-group text-center">
             <label for="exampleFormControlFile1">Upload Photo</label>
-            <input type="file" class="col-md-12 p-0 form-control-file mx-auto" id="upload">
+            <input type="file" class="col-md-12 p-0 form-control form-control-file mx-auto" id="upload">
           </div>
         </div>
         <div class="survey-questions border">
@@ -50,6 +50,7 @@
         </div>
         <button type="submit" onsubmit="return false" class="btn btn-success btn-large btn-block" id="submit"><i class="fas fa-calculator"></i>
           Submit</button>
+        <div class="popup"></div>
       </form>
       <a href="/api/enemies">
         API Enemies List

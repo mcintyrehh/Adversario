@@ -1,3 +1,5 @@
+$.ajaxSetup({ traditional: true });
+$('.alert').alert()
 console.log("**************************");
 //array of the 10 survey questions, this way its super easy to update them if needed later
 var questionArray = [
@@ -28,32 +30,54 @@ $("input#upload").on("change", function () {
 });
 
 $("#submit").on("click", function () {
-    var answer;
-    var nameInput = $("#nameInput").val();
-    console.log(nameInput);
-    var photo = $("#upload").val();
-    console.log(photo);
-    var scores = [];
-    for (i = 1; i < 11; i++) {
-        answer = $(`input[name=question-${i}]:checked`).val();
-        scores.push(answer);
+    // Form validation
+    function validateForm() {
+        var isValid = true;
+        $('.form-control').each(function () {
+            if ($(this).val() === '')
+                isValid = false;
+        });
+        for (i=1; i<11; i++) {
+            if ($(`#inlineRadio${i}:checked`).val() == '' )
+                isValid = false
+        }
+        return isValid;
     }
-    console.log(scores);
     event.preventDefault();
-    var surveyObject = new Survey(nameInput, photo, scores);
-    console.log(surveyObject);
-    $.post('/api/enemies', surveyObject, function(data) {
-        console.log(data);
-    })
+    if (validateForm() == true) {
+        $().alert('dispose');
+        var surveyObject = {
+            name: $("#nameInput").val(),
+            photo: $('#upload').val(),
+            scores: [
+                $('input[name=question-1]:checked').val(),
+                $('input[name=question-2]:checked').val(), 
+                $('input[name=question-3]:checked').val(), 
+                $('input[name=question-4]:checked').val(), 
+                $('input[name=question-5]:checked').val(), 
+                $('input[name=question-6]:checked').val(), 
+                $('input[name=question-7]:checked').val(), 
+                $('input[name=question-8]:checked').val(), 
+                $('input[name=question-9]:checked').val(), 
+                $('input[name=question-10]:checked').val()
+            ],
+        }
+        console.log(surveyObject.scores)
+        $.post('/api/enemies', surveyObject, function (data) {
+            console.log(data);
+        })
+    }
+    else {
+        $(".popup").html(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole!</strong> You need to fill out all the fields
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>`)
+    }
+  })
 
-})
 
-var Survey = function (name, photo, scores) {
-    this.name = name;
-    this.photo = photo;
-    this.scores = scores;
-};
-//
 function question(id, string) {
     $(".survey-questions").append(`<div id="question${id}">
         <div class="question-number text-center">Question ${id}</div>

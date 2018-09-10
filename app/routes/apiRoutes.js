@@ -12,6 +12,8 @@ router.post('/api/enemies', function(req, res) {
   var newEntry = req.body;
   console.log(newEntry);
   enemiesList.push(newEntry);
-  res.json("New enemy added!");
+  // var length = enemies.length;
+  var test = enemiesList[3].scores;
+  res.json("yuuuuuup" + test);
 })
 module.exports = router;
