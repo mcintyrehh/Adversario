@@ -62,9 +62,11 @@ $("#submit").on("click", function () {
                 $('input[name=question-10]:checked').val()
             ],
         }
+        
         console.log(surveyObject.scores)
         $.post('/api/enemies', surveyObject, function (data) {
             console.log(data);
+            $('#enemyModal').modal();
         })
     }
     else {
