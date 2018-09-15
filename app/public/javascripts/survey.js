@@ -43,11 +43,15 @@ $("#submit").on("click", function () {
         }
         return isValid;
     }
+    //prevent default page reload
     event.preventDefault();
     if (validateForm() == true) {
+        //if everything has been answered, delete the bootstrap alert
         $().alert('dispose');
+        //creating an object of survey answers
         var surveyObject = {
             name: $("#nameInput").val(),
+            email: $("emailInput").val(),
             photo: $('#upload').val(),
             scores: [
                 $('input[name=question-1]:checked').val(),
@@ -62,14 +66,17 @@ $("#submit").on("click", function () {
                 $('input[name=question-10]:checked').val()
             ],
         }
-        
-        console.log(surveyObject.scores)
+        //posting the object above, where apiRoutes.js will find the match and send it back as res (appearing as data here)
         $.post('/api/enemies', surveyObject, function (data) {
-            console.log(data);
+            var enemy = data;
+            $('.enemy-pic').attr("src", enemy.photo);
+            $('.enemy-name').text(enemy.name);
+            $('.enemy-email').text(enemy.email);
             $('#enemyModal').modal();
         })
     }
     else {
+        //bootstrap alert if survey fields are left empty
         $(".popup").html(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>Holy guacamole!</strong> You need to fill out all the fields
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

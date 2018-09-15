@@ -5,6 +5,9 @@ body {
   max-width: 100vw;
   color: whitesmoke;
 }
+.pipes {
+  color: whitesmoke;
+}
 .titletop {
   font-size: 50px;
   color: whitesmoke;
@@ -24,4 +27,7 @@ body {
 }
 a {
   color: #00B7FF;
+}
+.modal {
+  color: black;
 }
